@@ -6,8 +6,24 @@
   <title>RoyalScent Official — Luxury Perfumes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+ 
+<!-- SEO Meta Tags -->
+<meta name="description" content="RoyalScent Official — Luxury Perfumes in Pakistan. Shop premium Oud, Rose & Amber fragrances. Order online with Cash on Delivery!"/>
+<meta name="keywords" content="luxury perfumes pakistan, oud perfume, buy perfume online pakistan, royalscent, best perfume karachi"/>
+<meta name="author" content="RoyalScent Official"/>
+<meta name="robots" content="index, follow"/>
+
+<!-- Open Graph -->
+<meta property="og:title" content="RoyalScent Official — Luxury Perfumes"/>
+<meta property="og:description" content="Premium fragrances crafted for those who define luxury. Shop now!"/>
+<meta property="og:type" content="website"/>
+<!-- <meta property="og:url" content="https://YOUR-DOMAIN.com"/> -->
+
+<!-- Canonical -->
+<!-- <link rel="canonical" href="https://YOUR-DOMAIN.com"/> -->
+
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -477,6 +493,42 @@
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(6px); }
     }
+
+
+.scroll-arrow-right {
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 50%;
+  display: none; /* default hidden */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #000;
+  cursor: pointer;
+  z-index: 10;
+  animation: arrowBounce 1.2s ease-in-out infinite;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  user-select: none;
+}
+
+/* Sirf mobile pe show */
+@media (max-width: 430px) {
+  .scroll-arrow-right {
+    display: flex;
+  }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(6px); }
+}
+
+    
   </style>
 </head>
 <body>
@@ -544,9 +596,13 @@
     <h2 class="section-title">Our <em>Perfumes</em></h2>
     <div class="section-line"></div>
   </div>
-  <div class="products-scroll-wrap">
+  <!-- <div class="products-scroll-wrap">
     <div class="products-grid" id="productsGrid"></div>
-  </div>
+  </div> -->
+<div class="products-scroll-wrap" style="position:relative;" id="productsWrap">
+    <div class="products-grid" id="productsGrid"></div>
+    <div class="scroll-arrow-right" id="productsArrow" onclick="document.getElementById('productsWrap').scrollBy({left: 260, behavior: 'smooth'})">›</div>
+</div>
 </section>
 
 <!-- DEALS SECTION -->
@@ -692,7 +748,7 @@
     <button class="success-close" onclick="closeSuccess()">Continue Shopping</button>
   </div>
 </div>
-
+<!--  -->
 <!-- TOAST CONTAINER -->
 <div class="toast-container" id="toastContainer"></div>
 
@@ -702,13 +758,19 @@
 
   // ── DATA ──
   const products = [
-    { id: 1, name: 'Oud Royale', sub: 'Eau de Parfum · 50ml', originalPrice: 4500, price: 2999, badge: 'BESTSELLER' },
-    { id: 2, name: 'Rose Noire', sub: 'Eau de Parfum · 50ml', originalPrice: 3800, price: 2499, badge: 'NEW' },
+     { id: 1, name: 'Oud Royale', sub: 'Eau de Parfum · 50ml', originalPrice: 4500, price: 2999, badge: 'BESTSELLER', 
+    //  img: 'oud-royale.jpg'
+     },
+  { id: 2, name: 'Rose Noire', sub: 'Eau de Parfum · 50ml', originalPrice: 3800, price: 2499, badge: 'NEW', 
+//   img: 'rose-noire.jpg' 
+},
   ];
 
   const deals = [
-    { id: 3, name: 'Golden Amber', sub: 'Eau de Parfum · 30ml', originalPrice: 2500, price: 1599, badge: 'DEAL' },
-    { id: 4, name: 'Mystic Musk', sub: 'Eau de Toilette · 100ml', originalPrice: 3200, price: 1999, badge: 'DEAL' },
+  { id: 3, name: 'Golden Amber', sub: 'Eau de Parfum · 30ml', originalPrice: 2500, price: 1599, badge: 'DEAL',
+//    img: 'golden-amber.jpg'
+ },
+    // { id: 4, name: 'Mystic Musk', sub: 'Eau de Toilette · 100ml', originalPrice: 3200, price: 1999, badge: 'DEAL' },
   ];
 
   let cart = [];
@@ -730,7 +792,11 @@
   function renderCard(p) {
     return `<div class="product-card">
       <div class="product-img-wrap">
-        <div class="product-img-placeholder">${bottleSVG}</div>
+        <div class="product-img-placeholder">  ${bottleSVG} 
+
+ <!-- <img src="./images/${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" /> -->
+         
+            </div>
         ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
       </div>
       <div class="product-info">
@@ -1016,6 +1082,22 @@
 
   // ── INIT ──
   updateCartUI();
+
+// Arrow hide on scroll
+  document.getElementById('productsWrap').addEventListener('scroll', function() {
+  const wrap = this;
+  const arrow = document.getElementById('productsArrow');
+  const isEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 10;
+  
+  if (isEnd) {
+    arrow.style.display = 'none';
+  } else {
+    arrow.style.display = 'flex';
+  }
+});
+
+
+
 </script>
 </body>
 </html>
