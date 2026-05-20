@@ -78,7 +78,10 @@
     }
 
     /* ── HERO SLIDER ── */
-    .hero { position: relative; height: 100vh; overflow: hidden; }
+    /* .hero { position: relative; height: 100vh; overflow: hidden; } */
+     .hero { position: relative; height: 100vh; overflow: hidden; }
+
+
     .slide {
       position: absolute; inset: 0; opacity: 0;
       transition: opacity 1.2s cubic-bezier(0.4,0,0.2,1);
@@ -87,11 +90,50 @@
     }
     .slide.active { opacity: 1; }
     .slide-1 {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 40%, #0d0d0d 100%);
+      /* background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 40%, #0d0d0d 100%); */
+background-image: url(./royalscent_1400x800.jpg);
+background-size: cover;
+  background-position: center;
     }
-    .slide-2 {
+
+/* Tablet */
+@media (max-width: 767px) {
+  .slide-1 {
+    background-image: url(./royal\ tablet.png); 
+  }
+
+  #slide1 .slide-subtitle {
+    /* color: #C9A84C; */
+    display: none;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.9);
+  }
+}
+
+/* Mobile */
+/* @media (max-width: 600px) {
+  .slide-1 {
+    background-image: url(./royalmobile\ withput\ compressed.png);  
+     max-width:100%;
+  height:auto;
+  object-fit:contain;
+  }
+} */
+
+    /* .slide-2 {
       background: linear-gradient(135deg, #0d0d0d 0%, #0f1a0a 40%, #0a0a0a 100%);
-    }
+    } */
+
+/* Slide 2 — Desktop */
+.slide-2 {
+  background-image: url(./slide\ 2.png);
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+
+
     .slide::before {
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);
@@ -108,17 +150,41 @@
       color: var(--gold); letter-spacing: 4px; margin-bottom: 24px;
       font-style: italic;
     }
-    .slide-tag {
+    /* .slide-tag {
       font-size: 0.7rem; letter-spacing: 5px; color: var(--gold);
       text-transform: uppercase; margin-bottom: 16px;
-    }
-    .slide-title {
-      font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem);
+    } */
+.slide-tag {
+  font-size: 0.7rem; letter-spacing: 5px; color: #ffffff;
+  text-transform: uppercase; margin-bottom: 16px;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+}
+
+    /* .slide-title  */
+      /* font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem);
       line-height: 1.1; color: var(--white); margin-bottom: 20px;
     }
-    .slide-title span { color: var(--gold); font-style: italic; }
-    .slide-subtitle { color: rgba(255,255,255,0.6); font-size: 1rem; font-weight: 300; margin-bottom: 36px; letter-spacing: 1px; }
-    .slide-cta {
+    .slide-title span { color: var(--gold); font-style: italic; } */
+
+.slide-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1; color: #ffffff; margin-bottom: 20px;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+}
+.slide-title span { color: #C9A84C; font-style: italic;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
+}
+
+    /* .slide-subtitle { color: rgba(255,255,255,0.6); font-size: 1rem; font-weight: 300; margin-bottom: 36px; letter-spacing: 1px; } */
+   
+ .slide-subtitle { color: #ffffff; font-size: 1rem; font-weight: 300; margin-bottom: 36px; letter-spacing: 1px;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.9);
+}
+
+
+   
+   
+    /* .slide-cta {
       display: inline-block; border: 1px solid var(--gold); color: var(--gold);
       padding: 14px 40px; text-decoration: none; letter-spacing: 3px;
       font-size: 0.8rem; text-transform: uppercase; font-weight: 500;
@@ -132,7 +198,23 @@
       transition: transform 0.3s ease; z-index: -1;
     }
     .slide-cta:hover { color: var(--black); }
-    .slide-cta:hover::before { transform: translateX(0); }
+    .slide-cta:hover::before { transform: translateX(0); } */
+
+.slide-cta {
+  display: inline-block; border: 1px solid #ffffff; color: #ffffff;
+  padding: 14px 40px; text-decoration: none; letter-spacing: 3px;
+  font-size: 0.8rem; text-transform: uppercase; font-weight: 500;
+  transition: all 0.3s; position: relative; overflow: hidden;
+  cursor: pointer; background: transparent;
+  font-family: 'Poppins', sans-serif;
+}
+.slide-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: #ffffff; transform: translateX(-100%);
+  transition: transform 0.3s ease; z-index: -1;
+}
+.slide-cta:hover { color: #0d0d0d; }
+.slide-cta:hover::before { transform: translateX(0); }
 
     /* slider dots */
     .slider-dots {
@@ -487,8 +569,8 @@
       display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 10;
       animation: bounce 2s infinite;
     }
-    .scroll-indicator span { font-size: 0.65rem; letter-spacing: 3px; color: rgba(201,168,76,0.6); text-transform: uppercase; }
-    .scroll-indicator svg { width: 20px; height: 20px; color: rgba(201,168,76,0.5); }
+   .scroll-indicator span { font-size: 0.65rem; letter-spacing: 3px; color: #FFF8E7; text-transform: uppercase; }
+.scroll-indicator svg { width: 20px; height: 20px; color: #FFF8E7; }
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(6px); }
@@ -528,7 +610,155 @@
   50% { transform: translateY(-50%) translateX(6px); }
 }
 
-    
+
+/* Slide 1 text override */
+#slide1 .slide-content {
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  padding: 36px 52px;
+  border-radius: 4px;
+  border: 1px solid rgba(201,168,76,0.25);
+  margin-top: 180px;
+}
+#slide1 .slide-title {
+  color: #F5D78E;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.95);
+}
+#slide1 .slide-title span {
+  color: #ffffff;
+  font-style: italic;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.95);
+}
+#slide1 .slide-subtitle {
+  color: #C9A84C;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.9);
+  display: none;
+}
+#slide1 .slide-tag {
+  color: rgba(245,215,142,0.85);
+  text-shadow: none;
+}
+#slide1 .slide-cta {
+  border-color: #F5D78E;
+  color: #F5D78E;
+}
+#slide1 .slide-cta::before {
+  background: #F5D78E;
+}
+#slide1 .slide-cta:hover {
+  color: #0d0d0d;
+}
+/* 
+@media (max-width: 600px) {
+  .slide-1 {
+    background-image: url(./royals-mobile-main-final\ \(1\).png);
+    background-size: cover;
+    background-position: center top;
+  }
+
+  #slide1 .slide-logo-fallback,
+  #slide1 .slide-tag,
+  #slide1 .slide-title,
+  #slide1 .slide-subtitle {
+    display: none;
+  }
+
+  #slide1 .slide-content {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    text-align: center;
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    margin-top: 0;
+    padding: 0 20px;
+  }
+
+  #slide1 .slide-cta {
+    border-color: #C9A84C;
+    color: #C9A84C;
+    width: 80%;
+    text-align: center;
+  }
+  #slide1 .slide-cta::before {
+    background: #C9A84C;
+  }
+  #slide1 .slide-cta:hover {
+    color: #000;
+  }
+} */
+  
+@media (max-width: 600px) {
+  .slide-1 {
+    background-image: url(./royals-mobile-main-final\ \(1\).png);
+    background-size: cover;
+    background-position: center top;
+  }
+
+  #slide1 .slide-logo-fallback,
+  #slide1 .slide-tag,
+  #slide1 .slide-title,
+  #slide1 .slide-subtitle {
+    display: none !important;
+  }
+
+  #slide1 .slide-content {
+    position: absolute;
+    bottom: 20px;        /* ← 80px se 20px kiya */
+    width: 100%;
+    text-align: center;
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    margin-top: 0;
+    padding: 0 20px;
+  }
+
+  #slide1 .slide-cta {
+    border-color: #C9A84C;
+    color: #C9A84C;
+    width: 80%;
+    text-align: center;
+  }
+  #slide1 .slide-cta::before {
+    background: #C9A84C;
+  }
+  #slide1 .slide-cta:hover {
+    color: #000;
+  }
+}
+
+
+@media (max-width: 600px) {
+  #slide1 .slide-logo-fallback,
+  #slide1 .slide-tag,
+  #slide1 .slide-title,
+  #slide1 .slide-subtitle {
+    display: none !important;
+  }
+
+  #slide1 .slide-cta {
+    display: inline-block !important;
+  }
+}
+
+@media (max-width: 390px) {
+  #slide1 .slide-content {
+    bottom: 10px;
+  }
+  #slide1 .slide-cta {
+    padding: 10px 20px;
+    font-size: 0.72rem;
+  }
+}
+
+@keyframes pulse-whatsapp {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+  50% { box-shadow: 0 0 0 8px rgba(37,211,102,0.15); }
+}
+
   </style>
 </head>
 <body>
@@ -536,7 +766,7 @@
 <!-- NAVBAR -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="./logo.png" alt="RoyalScent" onerror="this.style.display='none'" />
+    <img src="./royal tablet.png" alt="RoyalScent" onerror="this.style.display='none'" />
     <span>RoyalScent</span>
   </a>
   <div class="nav-right">
@@ -554,7 +784,6 @@
   <div class="slide slide-1 active" id="slide1">
     <div class="slide-ornament">✦</div>
     <div class="slide-content">
-      <img src="./logo.png" alt="RoyalScent" class="slide-logo" onerror="this.style.display='none'" />
       <div class="slide-logo-fallback" id="fallback1">RoyalScent</div>
       <div class="slide-tag">✦ Est. 2024 — Pakistan's Finest ✦</div>
       <h1 class="slide-title">The Art of<br><span>Eternal Fragrance</span></h1>
@@ -567,7 +796,6 @@
   <div class="slide slide-2" id="slide2">
     <div class="slide-ornament">◈</div>
     <div class="slide-content">
-      <img src="./logo.png" alt="RoyalScent" class="slide-logo" onerror="this.style.display='none'" />
       <div class="slide-logo-fallback" id="fallback2">RoyalScent</div>
       <div class="slide-tag">✦ Limited Edition — 2025 ✦</div>
       <h1 class="slide-title">Where Royalty<br><span>Meets Scent</span></h1>
@@ -577,16 +805,16 @@
   </div>
 
   <!-- Dots -->
-  <div class="slider-dots">
+  <!-- <div class="slider-dots">
     <div class="dot active" onclick="goToSlide(0)"></div>
     <div class="dot" onclick="goToSlide(1)"></div>
-  </div>
+  </div> -->
 
   <!-- Scroll indicator -->
-  <div class="scroll-indicator">
+  <!-- <div class="scroll-indicator">
     <span>Scroll</span>
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-  </div>
+  </div> -->
 </section>
 
 <!-- PRODUCTS SECTION -->
@@ -622,10 +850,24 @@
   <div class="footer-logo">RoyalScent</div>
   <div class="footer-tagline">Luxury Fragrances — Pakistan</div>
   <div class="footer-line"></div>
-  <a href="https://instagram.com" target="_blank" class="footer-instagram">
+  <!-- <a href="https://instagram.com/royal.scentsofficial" target="_blank" class="footer-instagram">
     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     Follow Us on Instagram
-  </a>
+  </a> -->
+
+<!-- WhatsApp -->
+<a href="https://wa.me/92249276375" target="_blank" class="footer-instagram"style="border-color:#25D366; color:#25D366; animation: pulse-whatsapp 2s infinite;">
+  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+  Chat on WhatsApp
+</a>
+
+<!-- Instagram -->
+<a href="https://instagram.com/royal.scentsofficial" target="_blank" class="footer-instagram">
+  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+  Follow Us on Instagram
+</a>
+
+
   <div class="footer-copy">© 2026 RoyalScent Official. All rights reserved.</div>
 </footer>
 
@@ -637,10 +879,17 @@
     <button class="close-btn" onclick="closeCart()">✕</button>
   </div>
   <div class="cart-items" id="cartItems">
-    <div class="cart-empty" id="cartEmpty">
+    <!-- <div class="cart-empty" id="cartEmpty">
       <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
       <p>Your cart is empty</p>
-    </div>
+    </div> -->
+
+<div class="cart-empty" id="cartEmpty">
+  <svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" width="64" height="64" style="opacity:0.25;color:var(--gold)"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+  <p style="font-size:1rem; color:var(--white); margin-top:8px;">Your Cart is Empty</p>
+  <p style="font-size:0.78rem; color:var(--grey); margin-top:4px;">Apni pasandida fragrance add karein ✨</p>
+</div>
+
   </div>
   <!-- Voucher -->
   <div class="voucher-wrap">
@@ -650,7 +899,16 @@
   <div class="voucher-msg" id="voucherMsg"></div>
   <!-- Totals -->
   <div class="cart-footer">
-    <div class="total-row"><span>Subtotal</span><span id="subtotalVal">Rs 0</span></div>
+
+  <!-- Delivery Progress -->
+  <div id="deliveryProgress" style="display:none; padding: 10px 0 6px;">
+    <p id="deliveryProgressMsg" style="font-size:0.78rem; margin-bottom:6px;"></p>
+    <div style="background:rgba(201,168,76,0.15); border-radius:20px; height:5px; width:100%;">
+      <div id="deliveryProgressBar" style="height:5px; border-radius:20px; width:0%; transition:width 0.4s;"></div>
+    </div>
+  </div>
+
+  <div class="total-row"><span>Subtotal</span><span id="subtotalVal">Rs 0</span></div>
     <div class="total-row" id="discountRow" style="display:none;color:#4caf50;"><span>Voucher (30%)</span><span id="discountVal">- Rs 0</span></div>
     <div class="total-row">
       <span>Delivery</span>
@@ -703,6 +961,11 @@
             <option>Bahadurabad</option>
             <option>Tariq Road</option>
             <option>Gulshan-e-Iqbal</option>
+            <option >Nursery</option>
+            <option >Clifton</option>
+            <option >TeenTalwar</option>
+            <option >Malir</option>
+            <option >In another area</option>
           </select>
         </div>
       </div>
@@ -721,13 +984,13 @@
             <input type="radio" name="payment" id="radioCOD" value="COD" />
             <label for="radioCOD">💵 Cash on Delivery</label>
           </div>
-          <div class="payment-option" id="payOptEP" onclick="selectPayment('EasyPaisa')">
+          <!-- <div class="payment-option" id="payOptEP" onclick="selectPayment('EasyPaisa')">
             <input type="radio" name="payment" id="radioEP" value="EasyPaisa" />
             <label for="radioEP">
               📱 EasyPaisa
               <div class="easypaisa-num" id="epNum">Send to: <strong>YOUR_EASYPAISA_NUMBER</strong></div>
             </label>
-          </div>
+          </div> -->
         </div>
       </div>
       <p style="font-size:0.78rem;color:var(--grey);margin-bottom:16px;">🚚 Estimated delivery: <span style="color:var(--gold-light)">5–7 business days</span></p>
@@ -758,18 +1021,21 @@
 
   // ── DATA ──
   const products = [
-     { id: 1, name: 'Oud Royale', sub: 'Eau de Parfum · 50ml', originalPrice: 4500, price: 2999, badge: 'BESTSELLER', 
-    //  img: 'oud-royale.jpg'
-     },
-  { id: 2, name: 'Rose Noire', sub: 'Eau de Parfum · 50ml', originalPrice: 3800, price: 2499, badge: 'NEW', 
-//   img: 'rose-noire.jpg' 
-},
+//      { id: 1, name: 'Veloura Bloom', sub: 'Eau de Parfum · 50ml', originalPrice: 4500, price: 2999, badge: 'BESTSELLER', 
+//      img: 'product1.jpg'
+//      },
+//   { id: 2, name: 'Veloura KNIGHT', sub: 'Eau de Parfum · 50ml', originalPrice: 3800, price: 2499, badge: 'NEW', 
+//    img: 'product2.jpg' 
+// },
+
+{ id: 1, name: 'Veloura BLOOM', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'BESTSELLER', img: 'product1.jpg' },
+{ id: 2, name: 'Veloura KNIGHT', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product2.jpg' },
+
+
   ];
 
   const deals = [
-  { id: 3, name: 'Golden Amber', sub: 'Eau de Parfum · 30ml', originalPrice: 2500, price: 1599, badge: 'DEAL',
-//    img: 'golden-amber.jpg'
- },
+ { id: 3, name: 'THE LEGENDARY BOX', sub: 'perfume · 2 x 50ml', originalPrice: 4999, price: 2699, badge: 'DEAL', img: 'product3.jpg' },,
     // { id: 4, name: 'Mystic Musk', sub: 'Eau de Toilette · 100ml', originalPrice: 3200, price: 1999, badge: 'DEAL' },
   ];
 
@@ -792,10 +1058,9 @@
   function renderCard(p) {
     return `<div class="product-card">
       <div class="product-img-wrap">
-        <div class="product-img-placeholder">  ${bottleSVG} 
+        <div class="product-img-placeholder">  
 
- <!-- <img src="./images/${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" /> -->
-         
+${p.img ? `<img src="./${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />` : bottleSVG}
             </div>
         ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
       </div>
@@ -839,7 +1104,48 @@
     updateCartUI();
   }
 
-  function updateCartUI() {
+  // function updateCartUI() {
+  //   const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+  //   const cartCount = cart.reduce((s, c) => s + c.qty, 0);
+  //   document.getElementById('cartCount').textContent = cartCount;
+
+  //   const itemsEl = document.getElementById('cartItems');
+  //   const emptyEl = document.getElementById('cartEmpty');
+
+  //   if (cart.length === 0) {
+  //     emptyEl.style.display = 'flex';
+  //     // remove all cart items
+  //     document.querySelectorAll('.cart-item').forEach(el => el.remove());
+  //   } else {
+  //     emptyEl.style.display = 'none';
+  //     // clear and re-render
+  //     document.querySelectorAll('.cart-item').forEach(el => el.remove());
+  //     cart.forEach(item => {
+  //       const div = document.createElement('div');
+  //       div.className = 'cart-item';
+  //       div.innerHTML = `
+  //         <div class="cart-item-img">
+  //           <svg viewBox="0 0 80 120" fill="none" width="28" height="42">
+  //             <rect x="28" y="2" width="24" height="10" rx="2" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/>
+  //             <rect x="20" y="20" width="40" height="70" rx="6" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/>
+  //           </svg>
+  //         </div>
+  //         <div class="cart-item-info">
+  //           <div class="cart-item-name">${item.name}</div>
+  //           <div class="cart-item-price">Rs ${(item.price * item.qty).toLocaleString()}</div>
+  //           <div class="qty-control">
+  //             <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+  //             <span class="qty-val">${item.qty}</span>
+  //             <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+  //           </div>
+  //         </div>
+  //         <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
+  //       `;
+  //       itemsEl.insertBefore(div, emptyEl);
+  //     });
+  //   }
+
+function updateCartUI() {
     const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
     const cartCount = cart.reduce((s, c) => s + c.qty, 0);
     document.getElementById('cartCount').textContent = cartCount;
@@ -849,11 +1155,12 @@
 
     if (cart.length === 0) {
       emptyEl.style.display = 'flex';
-      // remove all cart items
       document.querySelectorAll('.cart-item').forEach(el => el.remove());
+      // Free delivery progress bar hide
+      const progressEl = document.getElementById('deliveryProgress');
+      if (progressEl) progressEl.style.display = 'none';
     } else {
       emptyEl.style.display = 'none';
-      // clear and re-render
       document.querySelectorAll('.cart-item').forEach(el => el.remove());
       cart.forEach(item => {
         const div = document.createElement('div');
@@ -878,29 +1185,86 @@
         `;
         itemsEl.insertBefore(div, emptyEl);
       });
+
+      // Free delivery progress
+      const remaining = Math.max(0, 3000 - total);
+      const progressEl = document.getElementById('deliveryProgress');
+      const progressMsgEl = document.getElementById('deliveryProgressMsg');
+      const progressBarEl = document.getElementById('deliveryProgressBar');
+      if (progressEl) {
+        progressEl.style.display = 'block';
+        if (total >= 3000) {
+          progressMsgEl.innerHTML = '🎉 <span style="color:#4caf50">You got Free Delivery!</span>';
+          progressBarEl.style.width = '100%';
+          progressBarEl.style.background = '#4caf50';
+        } else {
+          progressMsgEl.innerHTML = `🚚 Add <strong style="color:var(--gold)">Rs ${remaining.toLocaleString()}</strong> more for Free Delivery`;
+          progressBarEl.style.width = Math.min((total / 3000) * 100, 100) + '%';
+          progressBarEl.style.background = 'var(--gold)';
+        }
+      }
     }
 
-    const discount = voucherApplied ? Math.round(total * 0.30) : 0;
+    // Voucher — subtotal pe lagao, minimum 1500
+    const discount = (voucherApplied && total >= 1500) ? Math.round(total * 0.30) : 0;
     const freeDelivery = total >= 3000;
-    const delivery = freeDelivery ? 0 : 300;
+    const delivery = cart.length === 0 ? 0 : (freeDelivery ? 0 : 300);
     const grandTotal = total - discount + delivery;
 
     document.getElementById('subtotalVal').textContent = 'Rs ' + total.toLocaleString();
-    document.getElementById('discountRow').style.display = voucherApplied ? 'flex' : 'none';
+    document.getElementById('discountRow').style.display = (voucherApplied && total >= 1500) ? 'flex' : 'none';
     document.getElementById('discountVal').textContent = '− Rs ' + discount.toLocaleString();
-    document.getElementById('deliveryVal').innerHTML = freeDelivery
-      ? '<span class="free-badge">FREE</span>'
-      : 'Rs 300';
+    document.getElementById('deliveryVal').innerHTML = cart.length === 0
+      ? 'Rs 0'
+      : freeDelivery
+        ? '<span class="free-badge">FREE</span>'
+        : 'Rs 300';
     document.getElementById('totalVal').textContent = 'Rs ' + grandTotal.toLocaleString();
   }
 
+
+  //   const discount = voucherApplied ? Math.round(total * 0.30) : 0;
+  //   const freeDelivery = total >= 3000;
+  //   const delivery = freeDelivery ? 0 : 300;
+  //   const grandTotal = total - discount + delivery;
+
+  //   document.getElementById('subtotalVal').textContent = 'Rs ' + total.toLocaleString();
+  //   document.getElementById('discountRow').style.display = voucherApplied ? 'flex' : 'none';
+  //   document.getElementById('discountVal').textContent = '− Rs ' + discount.toLocaleString();
+  //   document.getElementById('deliveryVal').innerHTML = freeDelivery
+  //     ? '<span class="free-badge">FREE</span>'
+  //     : 'Rs 300';
+  //   document.getElementById('totalVal').textContent = 'Rs ' + grandTotal.toLocaleString();
+  // }
+
   // ── VOUCHER ──
-  function applyVoucher() {
+  // function applyVoucher() {
+  //   const code = document.getElementById('voucherInput').value.trim().toUpperCase();
+  //   const msgEl = document.getElementById('voucherMsg');
+  //   if (code === 'ROYAL30') {
+  //     voucherApplied = true;
+  //     msgEl.textContent = '✓ Voucher applied! 30% discount activated.';
+  //     msgEl.className = 'voucher-msg success';
+  //     updateCartUI();
+  //   } else {
+  //     msgEl.textContent = '✗ Invalid voucher code.';
+  //     msgEl.className = 'voucher-msg error';
+  //   }
+  // }
+
+function applyVoucher() {
     const code = document.getElementById('voucherInput').value.trim().toUpperCase();
     const msgEl = document.getElementById('voucherMsg');
+    const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
+
     if (code === 'ROYAL30') {
+      if (total < 1500) {
+        msgEl.textContent = '✗ Minimum Rs 1,500 ka order chahiye voucher apply karne ke liye.';
+        msgEl.className = 'voucher-msg error';
+        return;
+      }
       voucherApplied = true;
-      msgEl.textContent = '✓ Voucher applied! 30% discount activated.';
+      msgEl.textContent = '✓ Voucher apply ho gaya! 30% discount activated.';
       msgEl.className = 'voucher-msg success';
       updateCartUI();
     } else {
@@ -908,6 +1272,8 @@
       msgEl.className = 'voucher-msg error';
     }
   }
+
+
 
   // ── CART OPEN/CLOSE ──
   function openCart() {
@@ -933,13 +1299,20 @@
     document.body.style.overflow = '';
   }
 
-  function selectPayment(method) {
+  // function selectPayment(method) {
+  //   selectedPayment = method;
+  //   document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+  //   document.getElementById('payOpt' + (method === 'COD' ? 'COD' : 'EP')).classList.add('selected');
+  //   document.getElementById('radio' + (method === 'COD' ? 'COD' : 'EP')).checked = true;
+  //   document.getElementById('epNum').classList.toggle('show', method === 'EasyPaisa');
+  // }
+function selectPayment(method) {
     selectedPayment = method;
     document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
-    document.getElementById('payOpt' + (method === 'COD' ? 'COD' : 'EP')).classList.add('selected');
-    document.getElementById('radio' + (method === 'COD' ? 'COD' : 'EP')).checked = true;
-    document.getElementById('epNum').classList.toggle('show', method === 'EasyPaisa');
+    document.getElementById('payOptCOD').classList.add('selected');
+    document.getElementById('radioCOD').checked = true;
   }
+
 
   function getOrderData() {
     const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
@@ -951,21 +1324,121 @@
     return { subtotal, discount, delivery, total, items };
   }
 
-  async function submitOrder() {
+  // async function submitOrder() {
+  //   const name = document.getElementById('custName').value.trim();
+  //   const email = document.getElementById('custEmail').value.trim();
+  //   const phone = document.getElementById('custPhone').value.trim();
+  //   const area = document.getElementById('custArea').value;
+  //   const address = document.getElementById('custAddress').value.trim();
+  //   const zip = document.getElementById('custZip').value.trim();
+
+  //   if (!name || !email || !phone || !area || !address || !selectedPayment) {
+  //     showToast('Please fill all required fields'); return;
+  //   }
+
+  //   const btn = document.getElementById('submitBtn');
+  //   btn.textContent = 'Processing...'; btn.disabled = true;
+
+  //   const od = getOrderData();
+
+  //   const templateParams = {
+  //     customer_name: name,
+  //     customer_email: email,
+  //     customer_phone: '+92' + phone,
+  //     customer_area: area,
+  //     customer_address: address,
+  //     customer_zipcode: zip || 'N/A',
+  //     payment_method: selectedPayment,
+  //     order_items: od.items,
+  //     subtotal: 'Rs ' + od.subtotal.toLocaleString(),
+  //     voucher_discount: od.discount > 0 ? 'Rs ' + od.discount.toLocaleString() : 'None',
+  //     delivery_fee: od.delivery === 0 ? 'FREE' : 'Rs 300',
+  //     total: 'Rs ' + od.total.toLocaleString(),
+  //   };
+
+    
+  //   try {
+  //     await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+  //   } catch(e) { console.warn('EmailJS:', e); }
+
+  //   try {
+  //     await fetch('YOUR_GOOGLE_SHEETS_SCRIPT_URL', {
+  //       method: 'POST',
+  //       mode: 'no-cors',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         name, email, phone: '+92' + phone, area, address, zipcode: zip,
+  //         payment_method: selectedPayment,
+  //         items: od.items, subtotal: od.subtotal,
+  //         discount: od.discount, delivery: od.delivery, total: od.total,
+  //       }),
+  //     });
+  //   } catch(e) { console.warn('Sheets:', e); }
+
+  //   btn.textContent = 'Confirm Order'; btn.disabled = false;
+  //   closeCheckout();
+  //   showSuccess({ name, email, phone: '+92' + phone, area, address, payment: selectedPayment, ...od });
+  //   cart = []; voucherApplied = false;
+  //   document.getElementById('voucherInput').value = '';
+  //   document.getElementById('voucherMsg').textContent = '';
+  //   updateCartUI();
+  // }
+
+
+async function submitOrder() {
     const name = document.getElementById('custName').value.trim();
     const email = document.getElementById('custEmail').value.trim();
     const phone = document.getElementById('custPhone').value.trim();
     const area = document.getElementById('custArea').value;
     const address = document.getElementById('custAddress').value.trim();
-    const zip = document.getElementById('custZip').value.trim();
 
-    if (!name || !email || !phone || !area || !address || !selectedPayment) {
-      showToast('Please fill all required fields'); return;
+    // Pehle sab errors clear karo
+    document.querySelectorAll('.field-error').forEach(el => el.remove());
+
+    let hasError = false;
+
+    function showFieldError(id, msg) {
+      const input = document.getElementById(id);
+      if (!input) return;
+      const err = document.createElement('div');
+      err.className = 'field-error';
+      err.style.cssText = 'color:#e55; font-size:0.75rem; margin-top:4px;';
+      err.textContent = '⚠ ' + msg;
+      input.parentNode.appendChild(err);
+      input.style.borderColor = '#e55';
+      hasError = true;
     }
+
+    if (!name) showFieldError('custName', 'Please enter your full name');
+    if (!email) showFieldError('custEmail', 'Please enter your email address');
+    if (!phone) showFieldError('custPhone', 'Please enter your phone number');
+    if (!area) showFieldError('custArea', 'Please select your area');
+    if (!address) showFieldError('custAddress', 'Please enter your full address');
+    if (!selectedPayment) {
+      const payEl = document.querySelector('.payment-options');
+      const err = document.createElement('div');
+      err.className = 'field-error';
+      err.style.cssText = 'color:#e55; font-size:0.75rem; margin-top:4px;';
+      err.textContent = '⚠ Please select a payment method';
+      payEl.parentNode.appendChild(err);
+      hasError = true;
+    }
+
+    if (hasError) {
+      showToast('Please fill all required fields');
+      return;
+    }
+
+    // Error borders reset karo jab sahi fill ho
+    ['custName','custEmail','custPhone','custArea','custAddress'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.borderColor = '';
+    });
 
     const btn = document.getElementById('submitBtn');
     btn.textContent = 'Processing...'; btn.disabled = true;
 
+    const zip = document.getElementById('custZip').value.trim();
     const od = getOrderData();
 
     const templateParams = {
@@ -983,12 +1456,10 @@
       total: 'Rs ' + od.total.toLocaleString(),
     };
 
-    // EmailJS
     try {
       await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
     } catch(e) { console.warn('EmailJS:', e); }
 
-    // Google Sheets
     try {
       await fetch('YOUR_GOOGLE_SHEETS_SCRIPT_URL', {
         method: 'POST',
@@ -1051,37 +1522,47 @@
   }
 
   // ── HERO SLIDER ──
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.dot');
+//   const slides = document.querySelectorAll('.slide');
+//   const dots = document.querySelectorAll('.dot');
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = n;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
+//   function goToSlide(n) {
+//     slides[currentSlide].classList.remove('active');
+//     dots[currentSlide].classList.remove('active');
+//     currentSlide = n;
+//     slides[currentSlide].classList.add('active');
+//     dots[currentSlide].classList.add('active');
+//   }
 
-  let autoSlide = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4000);
+  
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      clearInterval(autoSlide);
-      goToSlide(i);
-      autoSlide = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4000);
-    });
-  });
 
-  // Hide logo fallbacks if logo image loads
-  document.querySelectorAll('.slide-logo').forEach(img => {
-    img.addEventListener('load', () => {
-      const fallback = img.nextElementSibling;
-      if (fallback && fallback.classList.contains('slide-logo-fallback')) fallback.style.display = 'none';
-    });
-  });
+// let autoSlide = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4000);
+
+//   // Hide logo fallbacks if logo image loads
+//   document.querySelectorAll('.slide-logo').forEach(img => {
+//     img.addEventListener('load', () => {
+//       const fallback = img.nextElementSibling;
+//       if (fallback && fallback.classList.contains('slide-logo-fallback')) fallback.style.display = 'none';
+//     });
+//   });
+
+
+const slides = document.querySelectorAll('.slide');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+}
+
+let autoSlide = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 3000);
+
+
 
   // ── INIT ──
   updateCartUI();
+  selectPayment('COD');
+
 
 // Arrow hide on scroll
   document.getElementById('productsWrap').addEventListener('scroll', function() {
