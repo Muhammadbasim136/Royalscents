@@ -1334,8 +1334,17 @@ slides[currentSlide].classList.remove('active');
     slide2.dataset.loaded = 'true';
   }
 }
+const slideTimes = [4000, 2000];
 
-let autoSlide = setInterval(() => goToSlide((currentSlide + 1) % slides.length), 3000);  // ── INIT ──
+function startSlideTimer() {
+  setTimeout(() => {
+    goToSlide((currentSlide + 1) % slides.length);
+    startSlideTimer();
+  }, slideTimes[currentSlide]);
+}
+
+startSlideTimer();
+
   updateCartUI();
   selectPayment('COD');
 
