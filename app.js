@@ -1,15 +1,18 @@
-  // ── EmailJS Init ──
+// ── EmailJS Init ──
   emailjs.init('WIAsRGIw-sjOGZA5X');
 
   // ── DATA ──
   const products = [
-{ id: 1, name: 'Veloura BLOOM', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'BESTSELLER', img: 'product1.jpg' },
-{ id: 2, name: 'Veloura KNIGHT', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product2.jpg' },
+    { id: 1, name: 'Veloura BLOOM', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'BESTSELLER', img: 'product1.jpg' },
+    { id: 2, name: 'Veloura KNIGHT', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product2.jpg' },
+    { id: 3, name: 'BRUT CLASSIC', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product..webp' },
+    { id: 5, name: 'THE SCULPTOR NOIR', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product5.jpg' },
+    { id: 6, name: 'CROWN ELIXORA', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product6.jpg' },
+    { id: 7, name: 'Vanilla Dew', sub: 'Eau de Parfum · 50ml', originalPrice: 2499, price: 1499, badge: 'NEW', img: 'product7.jpg' },
   ];
 
   const deals = [
- { id: 3, name: 'THE LEGENDARY BOX', sub: 'perfume · 2 x 50ml', originalPrice: 4999, price: 2699, badge: 'DEAL', img: 'product3.jpg' },,
-    // { id: 4, name: 'Mystic Musk', sub: 'Eau de Toilette · 100ml', originalPrice: 3200, price: 1999, badge: 'DEAL' },
+    { id: 4, name: 'THE LEGENDARY BOX', sub: 'perfume · 2 x 50ml', originalPrice: 4999, price: 2699, badge: 'DEAL', img: 'product3.jpg' },
   ];
 
   let cart = [];
@@ -31,15 +34,14 @@
   // ── RENDER CARDS ──
   function renderCard(p) {
     return `<div class="product-card">
-      <div class="product-img-wrap">
-        <div class="product-img-placeholder">  
-
-${p.img ? `<img src="./${p.img}" alt="${p.name}"
-     loading="lazy"
-     decoding="async"
-     width="400" height="533"
-     style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'" />` : bottleSVG}
-            </div>
+      <div class="product-img-wrap" style="${p.wide ? 'aspect-ratio:4/3;' : 'aspect-ratio:3/4;'}">
+        <div class="product-img-placeholder">
+          ${p.img ? `<img src="./${p.img}" alt="${p.name}"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;object-fit:${p.wide ? 'contain' : 'cover'};background:#0a0a0a;"
+            onerror="this.style.display='none'" />` : bottleSVG}
+        </div>
         ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
       </div>
       <div class="product-info">
@@ -82,7 +84,7 @@ ${p.img ? `<img src="./${p.img}" alt="${p.name}"
     updateCartUI();
   }
 
-function updateCartUI() {
+  function updateCartUI() {
     const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
     const cartCount = cart.reduce((s, c) => s + c.qty, 0);
     document.getElementById('cartCount').textContent = cartCount;
@@ -91,25 +93,24 @@ function updateCartUI() {
     const emptyEl = document.getElementById('cartEmpty');
 
     if (cart.length === 0) {
-  emptyEl.style.display = 'flex';
-  document.querySelectorAll('.cart-item').forEach(el => el.remove());
-  const progressEl = document.getElementById('deliveryProgress');
-  if (progressEl) progressEl.style.display = 'none';
-  voucherApplied = false;
-  voucherDiscount = 0;
-  document.getElementById('voucherInput').value = '';
-  document.getElementById('voucherMsg').textContent = '';
-  document.getElementById('voucherMsg').className = 'voucher-msg';
+      emptyEl.style.display = 'flex';
+      document.querySelectorAll('.cart-item').forEach(el => el.remove());
+      const progressEl = document.getElementById('deliveryProgress');
+      if (progressEl) progressEl.style.display = 'none';
+      voucherApplied = false;
+      voucherDiscount = 0;
+      document.getElementById('voucherInput').value = '';
+      document.getElementById('voucherMsg').textContent = '';
+      document.getElementById('voucherMsg').className = 'voucher-msg';
     } else {
       emptyEl.style.display = 'none';
       document.querySelectorAll('.cart-item').forEach(el => el.remove());
       cart.forEach(item => {
         const div = document.createElement('div');
         div.className = 'cart-item';
-div.innerHTML = `
+        div.innerHTML = `
           <div class="cart-item-img" style="overflow:hidden; border-radius:2px; width:70px; height:70px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#1a1a1a; border:1px solid rgba(201,168,76,0.2);">
-            ${item.img ? `<img src="./${item.img}" alt="${item.name}"      loading="lazy"
- style="overflow:hidden; border-radius:2px; width:90px; height:70px;;" onerror="this.style.display='none'" />` : `<svg viewBox="0 0 80 120" fill="none" width="28" height="42"><rect x="28" y="2" width="24" height="10" rx="2" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/><rect x="20" y="20" width="40" height="70" rx="6" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/></svg>`}
+            ${item.img ? `<img src="./${item.img}" alt="${item.name}" loading="lazy" style="overflow:hidden; border-radius:2px; width:90px; height:70px;" onerror="this.style.display='none'" />` : `<svg viewBox="0 0 80 120" fill="none" width="28" height="42"><rect x="28" y="2" width="24" height="10" rx="2" fill="rgba(201,168,76,0.2)" stroke="rgba(201,168,76,0.4)" stroke-width="1.5"/><rect x="20" y="20" width="40" height="70" rx="6" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.35)" stroke-width="1.5"/></svg>`}
           </div>
           <div class="cart-item-info">
             <div class="cart-item-name">${item.name}</div>
@@ -125,7 +126,6 @@ div.innerHTML = `
         itemsEl.insertBefore(div, emptyEl);
       });
 
-      // Free delivery progress
       const remaining = Math.max(0, 3000 - total);
       const progressEl = document.getElementById('deliveryProgress');
       const progressMsgEl = document.getElementById('deliveryProgressMsg');
@@ -144,22 +144,24 @@ div.innerHTML = `
       }
     }
 
-    // Voucher — subtotal pe lagao, minimum 1500
-if (voucherApplied && total < 3000) {
-  voucherApplied = false;
-  voucherDiscount = 0;
-  document.getElementById('voucherInput').value = '';
-document.getElementById('voucherMsg').textContent = '✗ Voucher removed — minimum Rs 3,000 required.';  document.getElementById('voucherMsg').className = 'voucher-msg error';
-}
-const freeDelivery = total >= 3000;
-const discount = (voucherApplied && total >= 3000) ? Math.round(total * voucherDiscount / 100) : 0;
-const labelEl = document.getElementById('discountLabel');
-if (labelEl) labelEl.textContent = 'Voucher (' + voucherDiscount + '%)';
-const delivery = cart.length === 0 ? 0 : (freeDelivery ? 0 : 300);
+    if (voucherApplied && total < 3000) {
+      voucherApplied = false;
+      voucherDiscount = 0;
+      document.getElementById('voucherInput').value = '';
+      document.getElementById('voucherMsg').textContent = '✗ Voucher removed — minimum Rs 3,000 required.';
+      document.getElementById('voucherMsg').className = 'voucher-msg error';
+    }
+
+    const freeDelivery = total >= 3000;
+    const discount = (voucherApplied && total >= 3000) ? Math.round(total * voucherDiscount / 100) : 0;
+    const labelEl = document.getElementById('discountLabel');
+    if (labelEl) labelEl.textContent = 'Voucher (' + voucherDiscount + '%)';
+    const delivery = cart.length === 0 ? 0 : (freeDelivery ? 0 : 300);
     const grandTotal = total - discount + delivery;
 
     document.getElementById('subtotalVal').textContent = 'Rs ' + total.toLocaleString();
-document.getElementById('discountRow').style.display = (voucherApplied && total >= 3000) ? 'flex' : 'none';    document.getElementById('discountVal').textContent = '− Rs ' + discount.toLocaleString();
+    document.getElementById('discountRow').style.display = (voucherApplied && total >= 3000) ? 'flex' : 'none';
+    document.getElementById('discountVal').textContent = '− Rs ' + discount.toLocaleString();
     document.getElementById('deliveryVal').innerHTML = cart.length === 0
       ? 'Rs 0'
       : freeDelivery
@@ -168,11 +170,10 @@ document.getElementById('discountRow').style.display = (voucherApplied && total 
     document.getElementById('totalVal').textContent = 'Rs ' + grandTotal.toLocaleString();
   }
 
-function applyVoucher() {
+  function applyVoucher() {
     const code = document.getElementById('voucherInput').value.trim().toUpperCase();
     const msgEl = document.getElementById('voucherMsg');
     const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
-
     const vouchers = { 'ROYAL10': 10, 'ROYAL20': 20 };
 
     if (vouchers[code]) {
@@ -191,6 +192,7 @@ function applyVoucher() {
       msgEl.className = 'voucher-msg error';
     }
   }
+
   // ── CART OPEN/CLOSE ──
   function openCart() {
     document.getElementById('cartSidebar').classList.add('open');
@@ -215,33 +217,31 @@ function applyVoucher() {
     document.body.style.overflow = '';
   }
 
-function selectPayment(method) {
+  function selectPayment(method) {
     selectedPayment = method;
     document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
     document.getElementById('payOptCOD').classList.add('selected');
     document.getElementById('radioCOD').checked = true;
   }
 
-
   function getOrderData() {
     const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
     const freeDelivery = subtotal >= 3000;
-const discount = voucherApplied ? Math.round(subtotal * voucherDiscount / 100) : 0;    const delivery = freeDelivery ? 0 : 300;
+    const discount = voucherApplied ? Math.round(subtotal * voucherDiscount / 100) : 0;
+    const delivery = freeDelivery ? 0 : 300;
     const total = subtotal - discount + delivery;
     const items = cart.map(c => `${c.name} x${c.qty} = Rs ${(c.price * c.qty).toLocaleString()}`).join('\n');
     return { subtotal, discount, delivery, total, items };
   }
 
-async function submitOrder() {
+  async function submitOrder() {
     const name = document.getElementById('custName').value.trim();
     const email = document.getElementById('custEmail').value.trim();
     const phone = document.getElementById('custPhone').value.trim();
     const area = document.getElementById('custArea').value;
     const address = document.getElementById('custAddress').value.trim();
 
-    // Pehle sab errors clear karo
     document.querySelectorAll('.field-error').forEach(el => el.remove());
-
     let hasError = false;
 
     function showFieldError(id, msg) {
@@ -256,38 +256,36 @@ async function submitOrder() {
       hasError = true;
     }
 
-function showPhoneError(msg) {
-  const phoneWrap = document.getElementById('custPhone').closest('.phone-wrap');
-  const err = document.createElement('div');
-  err.className = 'field-error';
-  err.style.cssText = 'color:#e55; font-size:0.75rem; margin-top:4px;';
-  err.textContent = '⚠ ' + msg;
-  phoneWrap.parentNode.insertBefore(err, phoneWrap.nextSibling);
-  document.getElementById('custPhone').style.borderColor = '#e55';
-  hasError = true;
-}
-
+    function showPhoneError(msg) {
+      const phoneWrap = document.getElementById('custPhone').closest('.phone-wrap');
+      const err = document.createElement('div');
+      err.className = 'field-error';
+      err.style.cssText = 'color:#e55; font-size:0.75rem; margin-top:4px;';
+      err.textContent = '⚠ ' + msg;
+      phoneWrap.parentNode.insertBefore(err, phoneWrap.nextSibling);
+      document.getElementById('custPhone').style.borderColor = '#e55';
+      hasError = true;
+    }
 
     if (!name) showFieldError('custName', 'Please enter your full name');
 
-// Email format validation
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (!email) {
-  showFieldError('custEmail', 'Please enter your email address');
-} else if (!emailRegex.test(email)) {
-  showFieldError('custEmail', 'please enter a valid email address');
-}
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      showFieldError('custEmail', 'Please enter your email address');
+    } else if (!emailRegex.test(email)) {
+      showFieldError('custEmail', 'please enter a valid email address');
+    }
 
-// Pakistani phone validation — 3XXXXXXXXX (10 digits, 3 se shuru)
-const phoneRegex = /^3\d{9}$/;
-if (!phone) {
-  showPhoneError('Please enter your phone number');
-} else if (!phoneRegex.test(phone)) {
-  showPhoneError('please enter 10-digits phone number like +92xxxxxxxxxx');
-}
+    const phoneRegex = /^3\d{9}$/;
+    if (!phone) {
+      showPhoneError('Please enter your phone number');
+    } else if (!phoneRegex.test(phone)) {
+      showPhoneError('please enter 10-digits phone number like +92xxxxxxxxxx');
+    }
 
-if (!area) showFieldError('custArea', 'Please select your area');
-if (!address) showFieldError('custAddress', 'Please enter your full address');
+    if (!area) showFieldError('custArea', 'Please select your area');
+    if (!address) showFieldError('custAddress', 'Please enter your full address');
+
     if (!selectedPayment) {
       const payEl = document.querySelector('.payment-options');
       const err = document.createElement('div');
@@ -303,7 +301,6 @@ if (!address) showFieldError('custAddress', 'Please enter your full address');
       return;
     }
 
-    // Error borders reset karo jab sahi fill ho
     ['custName','custEmail','custPhone','custArea','custAddress'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.borderColor = '';
@@ -368,7 +365,7 @@ if (!address) showFieldError('custAddress', 'Please enter your full address');
       <div class="summary-row"><span>Address</span><span>${data.address}</span></div>
       <div class="summary-row"><span>Payment</span><span>${data.payment}</span></div>
       <div class="summary-row"><span>Subtotal</span><span>Rs ${data.subtotal.toLocaleString()}</span></div>
-      ${data.discount > 0 ? `<div class="summary-row"><span>Discount (30%)</span><span>−Rs ${data.discount.toLocaleString()}</span></div>` : ''}
+      ${data.discount > 0 ? `<div class="summary-row"><span>Discount (${voucherDiscount}%)</span><span>−Rs ${data.discount.toLocaleString()}</span></div>` : ''}
       <div class="summary-row"><span>Delivery</span><span>${data.delivery === 0 ? 'FREE' : 'Rs 300'}</span></div>
       <div class="summary-row" style="font-weight:600;"><span>Total</span><span>Rs ${data.total.toLocaleString()}</span></div>
     `;
@@ -395,43 +392,69 @@ if (!address) showFieldError('custAddress', 'Please enter your full address');
     }, 3000);
   }
 
-const slides = document.querySelectorAll('.slide');
+  // ── HERO SLIDER ──
+  const slides = document.querySelectorAll('.slide');
 
-function goToSlide(n) {
-slides[currentSlide].classList.remove('active');
-  currentSlide = n;
-  slides[currentSlide].classList.add('active');
-
-  const slide2 = document.getElementById('slide2');
-  if (!slide2.dataset.loaded) {
-    slide2.style.backgroundImage = "url('./slide 2.png')";
-    slide2.dataset.loaded = 'true';
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = n;
+    slides[currentSlide].classList.add('active');
+    const slide2 = document.getElementById('slide2');
+    if (!slide2.dataset.loaded) {
+      slide2.style.backgroundImage = "url('./slide 2.png')";
+      slide2.dataset.loaded = 'true';
+    }
   }
-}
-const slideTimes = [4000, 2000];
 
-function startSlideTimer() {
-  setTimeout(() => {
-    goToSlide((currentSlide + 1) % slides.length);
-    startSlideTimer();
-  }, slideTimes[currentSlide]);
-}
-
-startSlideTimer();
+  const slideTimes = [4000, 2000];
+  function startSlideTimer() {
+    setTimeout(() => {
+      goToSlide((currentSlide + 1) % slides.length);
+      startSlideTimer();
+    }, slideTimes[currentSlide]);
+  }
+  startSlideTimer();
 
   updateCartUI();
   selectPayment('COD');
 
-// Arrow hide on scroll
-  document.getElementById('productsWrap').addEventListener('scroll', function() {
-  const wrap = this;
-  const arrow = document.getElementById('productsArrow');
-  const isEnd = wrap.scrollLeft + wrap.clientWidth >= wrap.scrollWidth - 10;
-  
-  if (isEnd) {
-    arrow.style.display = 'none';
-  } else {
-    arrow.style.display = 'flex';
-  }
-});
+  // ── PRODUCTS SCROLL ──
+  const productsWrap = document.getElementById('productsWrap');
+  const cardWidth = window.innerWidth <= 600 ? 220 + 14 : window.innerWidth <= 900 ? 260 + 24 : 280 + 24;
 
+  function scrollProducts(dir) {
+    productsWrap.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+    setTimeout(updateArrows, 400);
+  }
+
+  function updateArrows() {
+    const leftBtn = document.querySelector('.scroll-arrow-left');
+    const rightBtn = document.querySelector('.scroll-arrow-right');
+    const scrollLeft = productsWrap.scrollLeft;
+    const maxScroll = productsWrap.scrollWidth - productsWrap.clientWidth;
+
+    leftBtn.style.opacity = scrollLeft <= 10 ? '0' : '1';
+    leftBtn.style.pointerEvents = scrollLeft <= 10 ? 'none' : 'auto';
+
+    rightBtn.style.opacity = scrollLeft >= maxScroll - 10 ? '0' : '1';
+    rightBtn.style.pointerEvents = scrollLeft >= maxScroll - 10 ? 'none' : 'auto';
+  }
+
+  productsWrap.addEventListener('scroll', updateArrows);
+  updateArrows();
+
+  // ── MOUSE DRAG SCROLL ──
+  let isDown = false, startX, scrollStart;
+  productsWrap.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.pageX - productsWrap.offsetLeft;
+    scrollStart = productsWrap.scrollLeft;
+  });
+  productsWrap.addEventListener('mouseleave', () => isDown = false);
+  productsWrap.addEventListener('mouseup', () => isDown = false);
+  productsWrap.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - productsWrap.offsetLeft;
+    productsWrap.scrollLeft = scrollStart - (x - startX);
+  });
